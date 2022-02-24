@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7B50AFC227C6AD0F005CDC18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B50AFC127C6AD0F005CDC18 /* AppDelegate.swift */; };
-		7B50AFC427C6AD0F005CDC18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B50AFC327C6AD0F005CDC18 /* ViewController.swift */; };
+		7B50AFC427C6AD0F005CDC18 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B50AFC327C6AD0F005CDC18 /* MainViewController.swift */; };
 		7B50AFC627C6AD11005CDC18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B50AFC527C6AD11005CDC18 /* Assets.xcassets */; };
 		7B50AFC927C6AD11005CDC18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B50AFC727C6AD11005CDC18 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		7B50AFBE27C6AD0F005CDC18 /* Renamer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Renamer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B50AFC127C6AD0F005CDC18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7B50AFC327C6AD0F005CDC18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7B50AFC327C6AD0F005CDC18 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7B50AFC527C6AD11005CDC18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B50AFC827C6AD11005CDC18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7B50AFCA27C6AD11005CDC18 /* Renamer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Renamer.entitlements; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 			children = (
 				7B50AFCA27C6AD11005CDC18 /* Renamer.entitlements */,
 				7B50AFC127C6AD0F005CDC18 /* AppDelegate.swift */,
-				7B50AFC327C6AD0F005CDC18 /* ViewController.swift */,
+				7B50AFC327C6AD0F005CDC18 /* MainViewController.swift */,
 				7B50AFC527C6AD11005CDC18 /* Assets.xcassets */,
 				7B50AFC727C6AD11005CDC18 /* Main.storyboard */,
 			);
@@ -131,7 +131,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B50AFC427C6AD0F005CDC18 /* ViewController.swift in Sources */,
+				7B50AFC427C6AD0F005CDC18 /* MainViewController.swift in Sources */,
 				7B50AFC227C6AD0F005CDC18 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
