@@ -736,17 +736,20 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="68Z-pI-UH2">
-                                                            <rect key="frame" x="8" y="0.0" width="995" height="24"/>
+                                                            <rect key="frame" x="8" y="0.0" width="361" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IYT-dy-3yL">
-                                                                    <rect key="frame" x="0.0" y="4" width="995" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="4" width="361" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="0xN-ja-yYq">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="68Z-pI-UH2" name="value" keyPath="objectValue.path" id="ZM7-q1-Pnw"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
@@ -756,6 +759,9 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <binding destination="RJ6-LQ-GxH" name="content" keyPath="arrangedObjects" id="aLK-b4-9jA"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                 </clipView>
@@ -786,7 +792,7 @@
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn width="366" minWidth="40" maxWidth="1000" id="Iws-3c-IH7">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="New Filenames">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Filenames">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -798,17 +804,20 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="dMy-A9-RrJ">
-                                                            <rect key="frame" x="8" y="0.0" width="995" height="24"/>
+                                                            <rect key="frame" x="8" y="0.0" width="361" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ybx-hj-4VZ">
-                                                                    <rect key="frame" x="0.0" y="4" width="995" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="4" width="361" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="1Sg-bm-kYQ">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="dMy-A9-RrJ" name="value" keyPath="objectValue" id="GJ0-P5-WQW"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
@@ -818,6 +827,9 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <binding destination="rmU-t9-9Ne" name="content" keyPath="arrangedObjects" id="veO-Dd-QRr"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                 </clipView>
@@ -870,8 +882,24 @@
                             <constraint firstItem="uoC-mF-SjP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="sl4-Ip-0b1"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="arrayControllerFilenames" destination="rmU-t9-9Ne" id="1XT-Bn-IaX"/>
+                        <outlet property="arrayControllerFiles" destination="RJ6-LQ-GxH" id="WJM-VS-jcN"/>
+                        <outlet property="tableViewFilenames" destination="OI3-It-18E" id="GAq-h4-1aC"/>
+                        <outlet property="tableViewFiles" destination="muh-vA-63L" id="bqE-0v-dQ1"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <arrayController id="rmU-t9-9Ne" userLabel="Array Controller Filenames">
+                    <connections>
+                        <binding destination="XfG-lQ-9wD" name="contentArray" keyPath="self.filenames" id="m3p-SQ-8gp"/>
+                    </connections>
+                </arrayController>
+                <arrayController id="RJ6-LQ-GxH" userLabel="Array Controller Files">
+                    <connections>
+                        <binding destination="XfG-lQ-9wD" name="contentArray" keyPath="self.files" id="eF6-VH-lrY"/>
+                    </connections>
+                </arrayController>
             </objects>
             <point key="canvasLocation" x="75" y="721.5"/>
         </scene>
