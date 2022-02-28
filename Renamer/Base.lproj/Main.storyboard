@@ -761,6 +761,7 @@
                                             </tableColumns>
                                             <connections>
                                                 <binding destination="RJ6-LQ-GxH" name="content" keyPath="arrangedObjects" id="aLK-b4-9jA"/>
+                                                <outlet property="dataSource" destination="XfG-lQ-9wD" id="v9I-TV-9Pe"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -829,6 +830,7 @@
                                             </tableColumns>
                                             <connections>
                                                 <binding destination="rmU-t9-9Ne" name="content" keyPath="arrangedObjects" id="veO-Dd-QRr"/>
+                                                <outlet property="dataSource" destination="XfG-lQ-9wD" id="ezl-Hx-ANk"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
