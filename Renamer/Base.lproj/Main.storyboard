@@ -892,6 +892,7 @@
                     <connections>
                         <outlet property="arrayControllerFilenames" destination="rmU-t9-9Ne" id="1XT-Bn-IaX"/>
                         <outlet property="arrayControllerFiles" destination="RJ6-LQ-GxH" id="WJM-VS-jcN"/>
+                        <outlet property="labelWarning" destination="pnh-fe-ODS" id="VdX-y4-VkU"/>
                         <outlet property="tableViewFilenames" destination="OI3-It-18E" id="GAq-h4-1aC"/>
                         <outlet property="tableViewFiles" destination="muh-vA-63L" id="bqE-0v-dQ1"/>
                     </connections>

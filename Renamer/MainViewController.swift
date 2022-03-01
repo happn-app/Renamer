@@ -11,6 +11,8 @@ import Cocoa
 
 class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterfaceValidations {
 	
+	@IBOutlet var labelWarning: NSTextField!
+	
 	@IBOutlet var tableViewFiles: NSTableView!
 	@IBOutlet var tableViewFilenames: NSTableView!
 	
