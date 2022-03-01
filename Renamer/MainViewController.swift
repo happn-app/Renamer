@@ -9,7 +9,7 @@ import Cocoa
 
 
 
-class MainViewController : NSViewController, NSTableViewDataSource {
+class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterfaceValidations {
 	
 	@IBOutlet var tableViewFiles: NSTableView!
 	@IBOutlet var tableViewFilenames: NSTableView!
@@ -26,11 +26,70 @@ class MainViewController : NSViewController, NSTableViewDataSource {
 		tableViewFiles.registerForDraggedTypes([.fileURL])
 		
 		files = []
-		filenames = ["Amazing New Name"]
+		filenames = []
 	}
 	
 	override var representedObject: Any? {
 		didSet {
+		}
+	}
+	
+	@IBAction func copy(_ sender: AnyObject) {
+		guard tableViewFiles.selectedRow >= 0 else {NSSound.beep(); return}
+		
+		let pasteboard = NSPasteboard.general
+		switch view.window?.firstResponder {
+			case tableViewFiles:
+				let urls = arrayControllerFiles.selectedObjects as! [URL]
+				pasteboard.clearContents()
+				pasteboard.writeObjects(urls as [NSURL])
+				pasteboard.setString(urls.map{ $0.path }.joined(separator: "\n"), forType: .string)
+				
+			case tableViewFilenames:
+				let lines = arrayControllerFilenames.selectedObjects as! [String]
+				pasteboard.clearContents()
+				pasteboard.setString(lines.joined(separator: "\n"), forType: .string)
+				
+			default:
+				NSSound.beep()
+		}
+	}
+	
+	@IBAction func paste(_ sender: AnyObject) {
+		let pasteboard = NSPasteboard.general
+		guard view.window?.firstResponder == tableViewFilenames,
+				let string = (pasteboard.readObjects(forClasses: [NSString.self], options: nil) as? [String])?.first
+		else {NSSound.beep(); return}
+		
+		var lines = [String]()
+		string.enumerateLines{ line, _ in lines.append(line) }
+		lines = lines.map{ line in
+			line
+				.trimmingCharacters(in: .whitespacesAndNewlines)
+				.replacingOccurrences(of: "/", with: "_")
+		}
+		arrayControllerFilenames.remove(contentsOf: arrayControllerFilenames.arrangedObjects as! [Any])
+		arrayControllerFilenames.add(contentsOf: lines)
+	}
+	
+	func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+		switch item.action {
+			case #selector(MainViewController.copy(_:))?:
+				switch view.window?.firstResponder {
+					case tableViewFiles:     return !tableViewFiles.selectedRowIndexes.isEmpty
+					case tableViewFilenames: return !tableViewFilenames.selectedRowIndexes.isEmpty
+					default: return false
+				}
+				
+			case #selector(MainViewController.paste(_:))?:
+				return (
+					view.window?.firstResponder == tableViewFilenames &&
+					NSPasteboard.general.canReadObject(forClasses: [NSString.self], options: nil)
+				)
+				
+			default:
+				return false
+//				return super.validateUserInterfaceItem(item)
 		}
 	}
 	
