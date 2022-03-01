@@ -763,7 +763,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="gW9-fb-iBg">
-                                    <rect key="frame" x="1" y="261" width="378" height="16"/>
+                                    <rect key="frame" x="1" y="299" width="378" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Ykp-CW-f9E">
@@ -868,18 +868,20 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="pnh-fe-ODS">
-                                <rect key="frame" x="18" y="23" width="336" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="⚠️ The number of files and file names is not the same." id="Tau-bC-m2V">
+                                <rect key="frame" x="18" y="23" width="96" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Error message." id="Tau-bC-m2V">
                                     <font key="font" textStyle="body" name=".SFNS-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="filesAndFilenamesCountIsEqual" id="Mtr-y4-p2O">
+                                    <binding destination="XfG-lQ-9wD" name="hidden" keyPath="errorMessage" id="kUX-Yi-0MC">
                                         <dictionary key="options">
                                             <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                            <string key="NSValueTransformerName">NSIsNil</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="errorMessage" id="A1D-M5-Rce"/>
                                 </connections>
                             </textField>
                         </subviews>

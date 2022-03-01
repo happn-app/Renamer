@@ -22,8 +22,8 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 	@objc dynamic var files = [URL]()        {didSet {updateStateVars()}}
 	@objc dynamic var filenames = [String]() {didSet {updateStateVars()}}
 	
-	@objc dynamic var canRename = false
-	@objc dynamic var filesAndFilenamesCountIsEqual = true
+	@objc dynamic var canRename = true
+	@objc dynamic var errorMessage: String?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -120,8 +120,34 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 	private let readOptions = [NSPasteboard.ReadingOptionKey.urlReadingFileURLsOnly: false]
 	
 	private func updateStateVars() {
-		filesAndFilenamesCountIsEqual = files.count == filenames.count
-		canRename = filesAndFilenamesCountIsEqual && !files.isEmpty
+		guard files.count == filenames.count else {
+			errorMessage = NSLocalizedString("cannot rename err: files and filenames do not have the same number of elements", value: "⚠️ The files and file names tables do not have the same number of elements.", comment: "Text shown when the number of elements in the files and the file names tables are not equal.")
+			canRename = false
+			return
+		}
+		guard !files.isEmpty else {
+			errorMessage = nil
+			canRename = false
+			return
+		}
+		guard Set(files).count == files.count else {
+			errorMessage = NSLocalizedString("cannot rename err: files has duplicates", value: "⚠️ The files table contains the same item more than once.", comment: "Text shown when the files table contains the same item more than once.")
+			canRename = false
+			return
+		}
+		guard Set(filenames).count == filenames.count else {
+			errorMessage = NSLocalizedString("cannot rename err: filenames has duplicates", value: "⚠️ The file names table contains the same item more than once.", comment: "Text shown when the filenames table contains the same item more than once.")
+			canRename = false
+			return
+		}
+		guard !filenames.contains(where: { $0.contains("/") }) else {
+			errorMessage = NSLocalizedString("cannot rename err: filenames contains invalid name", value: "⚠️ The file names table contains an item with an invalid name (check for punctuation, etc.)", comment: "Text shown when the filenames table contains an item with an invalid name.")
+			canRename = false
+			return
+		}
+		
+		errorMessage = nil
+		canRename = true
 	}
 	
 }
