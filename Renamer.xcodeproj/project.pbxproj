@@ -11,6 +11,7 @@
 		7B50AFC427C6AD0F005CDC18 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B50AFC327C6AD0F005CDC18 /* MainViewController.swift */; };
 		7B50AFC627C6AD11005CDC18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B50AFC527C6AD11005CDC18 /* Assets.xcassets */; };
 		7B50AFC927C6AD11005CDC18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B50AFC727C6AD11005CDC18 /* Main.storyboard */; };
+		7BB4124327CE6FDB0089E777 /* UntouchablePathControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB4124227CE6FDB0089E777 /* UntouchablePathControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		7B50AFC527C6AD11005CDC18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B50AFC827C6AD11005CDC18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7B50AFCA27C6AD11005CDC18 /* Renamer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Renamer.entitlements; sourceTree = "<group>"; };
+		7BB4124227CE6FDB0089E777 /* UntouchablePathControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UntouchablePathControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				7B50AFC327C6AD0F005CDC18 /* MainViewController.swift */,
 				7B50AFC527C6AD11005CDC18 /* Assets.xcassets */,
 				7B50AFC727C6AD11005CDC18 /* Main.storyboard */,
+				7BB4124227CE6FDB0089E777 /* UntouchablePathControl.swift */,
 			);
 			path = Renamer;
 			sourceTree = "<group>";
@@ -133,6 +136,7 @@
 			files = (
 				7B50AFC227C6AD0F005CDC18 /* AppDelegate.swift in Sources */,
 				7B50AFC427C6AD0F005CDC18 /* MainViewController.swift in Sources */,
+				7BB4124327CE6FDB0089E777 /* UntouchablePathControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
