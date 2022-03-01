@@ -60,11 +60,13 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 		
 		var lines = [String]()
 		string.enumerateLines{ line, _ in lines.append(line) }
-		lines = lines.map{ line in
-			line
-				.trimmingCharacters(in: .whitespacesAndNewlines)
-				.replacingOccurrences(of: "/", with: "_")
-		}
+		lines = lines
+			.map{ line in
+				line
+					.trimmingCharacters(in: .whitespacesAndNewlines)
+					.replacingOccurrences(of: "/", with: "_")
+			}
+			.filter{ !$0.isEmpty }
 		arrayControllerFilenames.remove(contentsOf: arrayControllerFilenames.arrangedObjects as! [Any])
 		arrayControllerFilenames.add(contentsOf: lines)
 	}
