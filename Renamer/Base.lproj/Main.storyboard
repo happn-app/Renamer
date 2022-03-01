@@ -707,17 +707,17 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="Renamer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="760" height="319"/>
+                        <rect key="frame" x="0.0" y="0.0" width="760" height="338"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoC-mF-SjP">
-                                <rect key="frame" x="0.0" y="60" width="380" height="259"/>
+                                <rect key="frame" x="0.0" y="60" width="380" height="278"/>
                                 <clipView key="contentView" id="O9f-bB-sT5">
-                                    <rect key="frame" x="1" y="1" width="378" height="257"/>
+                                    <rect key="frame" x="1" y="1" width="378" height="276"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" headerView="90F-mT-peJ" viewBased="YES" id="muh-vA-63L">
-                                            <rect key="frame" x="0.0" y="0.0" width="378" height="229"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="378" height="248"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -763,7 +763,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="gW9-fb-iBg">
-                                    <rect key="frame" x="1" y="270" width="378" height="16"/>
+                                    <rect key="frame" x="1" y="242" width="378" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Ykp-CW-f9E">
@@ -776,13 +776,13 @@
                                 </tableHeaderView>
                             </scrollView>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQx-59-L40">
-                                <rect key="frame" x="380" y="60" width="380" height="259"/>
+                                <rect key="frame" x="380" y="60" width="380" height="278"/>
                                 <clipView key="contentView" ambiguous="YES" id="0yS-J1-vuz">
-                                    <rect key="frame" x="1" y="1" width="378" height="257"/>
+                                    <rect key="frame" x="1" y="1" width="378" height="276"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" headerView="JK4-hz-0Gm" viewBased="YES" id="OI3-It-18E">
-                                            <rect key="frame" x="0.0" y="0.0" width="378" height="229"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="378" height="248"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -865,9 +865,9 @@
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="pnh-fe-ODS">
-                                <rect key="frame" x="18" y="23" width="37" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Tau-bC-m2V">
-                                    <font key="font" metaFont="system"/>
+                                <rect key="frame" x="18" y="23" width="336" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="⚠️ The number of files and file names is not the same." id="Tau-bC-m2V">
+                                    <font key="font" textStyle="body" name=".SFNS-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -908,7 +908,7 @@
                     </connections>
                 </arrayController>
             </objects>
-            <point key="canvasLocation" x="75" y="721.5"/>
+            <point key="canvasLocation" x="75" y="729"/>
         </scene>
     </scenes>
 </document>
