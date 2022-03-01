@@ -19,8 +19,11 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 	@IBOutlet var arrayControllerFiles: NSArrayController!
 	@IBOutlet var arrayControllerFilenames: NSArrayController!
 	
-	@objc dynamic var files = [URL]()
-	@objc dynamic var filenames = [String]()
+	@objc dynamic var files = [URL]()        {didSet {updateStateVars()}}
+	@objc dynamic var filenames = [String]() {didSet {updateStateVars()}}
+	
+	@objc dynamic var canRename = false
+	@objc dynamic var filesAndFilenamesCountIsEqual = true
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -115,5 +118,10 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 	}
 	
 	private let readOptions = [NSPasteboard.ReadingOptionKey.urlReadingFileURLsOnly: false]
+	
+	private func updateStateVars() {
+		filesAndFilenamesCountIsEqual = files.count == filenames.count
+		canRename = filesAndFilenamesCountIsEqual && !files.isEmpty
+	}
 	
 }
