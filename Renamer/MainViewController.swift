@@ -35,8 +35,6 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 	}
 	
 	@IBAction func copy(_ sender: AnyObject) {
-		guard tableViewFiles.selectedRow >= 0 else {NSSound.beep(); return}
-		
 		let pasteboard = NSPasteboard.general
 		switch view.window?.firstResponder {
 			case tableViewFiles:
