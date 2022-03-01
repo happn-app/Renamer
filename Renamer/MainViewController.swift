@@ -55,8 +55,7 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 	
 	@IBAction func paste(_ sender: AnyObject) {
 		let pasteboard = NSPasteboard.general
-		guard view.window?.firstResponder == tableViewFilenames,
-				let string = (pasteboard.readObjects(forClasses: [NSString.self], options: nil) as? [String])?.first
+		guard let string = (pasteboard.readObjects(forClasses: [NSString.self], options: nil) as? [String])?.first
 		else {NSSound.beep(); return}
 		
 		var lines = [String]()
@@ -80,10 +79,7 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 				}
 				
 			case #selector(MainViewController.paste(_:))?:
-				return (
-					view.window?.firstResponder == tableViewFilenames &&
-					NSPasteboard.general.canReadObject(forClasses: [NSString.self], options: nil)
-				)
+				return NSPasteboard.general.canReadObject(forClasses: [NSString.self], options: nil)
 				
 			default:
 				return false
