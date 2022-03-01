@@ -76,6 +76,26 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 		arrayControllerFilenames.add(contentsOf: lines)
 	}
 	
+	@IBAction func delete(_ sender: AnyObject) {
+		switch view.window?.firstResponder {
+			case tableViewFiles:
+				arrayControllerFiles.remove(atArrangedObjectIndexes: arrayControllerFiles.selectionIndexes)
+				
+			case tableViewFilenames:
+				arrayControllerFilenames.remove(atArrangedObjectIndexes: arrayControllerFilenames.selectionIndexes)
+				
+			default:
+				NSSound.beep()
+		}
+	}
+	
+	override func keyDown(with event: NSEvent) {
+		guard event.specialKey == .delete else {
+			return super.keyDown(with: event)
+		}
+		delete(event)
+	}
+	
 	func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
 		switch item.action {
 			case #selector(MainViewController.copy(_:))?:
@@ -87,6 +107,13 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 				
 			case #selector(MainViewController.paste(_:))?:
 				return NSPasteboard.general.canReadObject(forClasses: [NSString.self], options: nil)
+				
+			case #selector(MainViewController.delete(_:))?:
+				switch view.window?.firstResponder {
+					case tableViewFiles:     return !tableViewFiles.selectedRowIndexes.isEmpty
+					case tableViewFilenames: return !tableViewFilenames.selectedRowIndexes.isEmpty
+					default: return false
+				}
 				
 			default:
 				return false
