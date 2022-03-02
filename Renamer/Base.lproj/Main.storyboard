@@ -764,7 +764,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="gW9-fb-iBg">
-                                    <rect key="frame" x="1" y="299" width="378" height="16"/>
+                                    <rect key="frame" x="1" y="242" width="378" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Ykp-CW-f9E">
@@ -866,6 +866,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <action selector="renameFiles:" target="XfG-lQ-9wD" id="tVA-gK-eEP"/>
                                     <binding destination="XfG-lQ-9wD" name="enabled" keyPath="canRename" id="8wV-WG-Q02"/>
                                 </connections>
                             </button>

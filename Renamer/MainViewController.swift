@@ -35,9 +35,8 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 		filenames = []
 	}
 	
-	override var representedObject: Any? {
-		didSet {
-		}
+	@IBAction func renameFiles(_ sender: Any?) {
+		
 	}
 	
 	@IBAction func copy(_ sender: AnyObject) {
