@@ -6,6 +6,9 @@
  */
 
 import Cocoa
+import os.log
+
+import XibLoc
 
 
 
@@ -36,7 +39,30 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 	}
 	
 	@IBAction func renameFiles(_ sender: Any?) {
+		guard files.count == filenames.count else {return NSSound.beep()}
 		
+		let fm = FileManager.default
+		for (file, filename) in zip(files, filenames) {
+			do {
+				let fileExtension = file.pathExtension
+				try fm.moveItem(at: file, to: file.deletingLastPathComponent().appendingPathComponent(filename).appendingPathExtension(fileExtension))
+			} catch {
+				if #available(macOS 11.0, *) {
+					Logger().info("Cannot rename URL \(file) to new name \(filename)")
+				}
+				let alert = NSAlert(error: error)
+				alert.informativeText = alert.messageText
+				alert.messageText = NSLocalizedString("rename error: failed to rename |file|, do you want to continue?", value: "Cannot rename file “|file|”. Do you want to continue?", comment: "The title of the error window when a file cannot be renamed.")
+					.applyingCommonTokens(simpleReplacement1: file.lastPathComponent)
+				alert.addButton(withTitle: NSLocalizedString("rename error: stop",     value: "Stop",     comment: "Title of the stop button in the alert when there is an error renaming a file."))
+				alert.addButton(withTitle: NSLocalizedString("rename error: continue", value: "Continue", comment: "Title of the continue button in the alert when there is an error renaming a file."))
+				alert.alertStyle = .warning
+				let res = alert.runModal()
+				guard res != .alertFirstButtonReturn else {
+					break
+				}
+			}
+		}
 	}
 	
 	@IBAction func copy(_ sender: AnyObject) {
