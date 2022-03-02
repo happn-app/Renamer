@@ -28,7 +28,7 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		tableViewFiles.registerForDraggedTypes([.fileURL])
+		tableViewFiles.registerForDraggedTypes([.fileURL, DraggedFile.draggedType])
 		
 		files = []
 		filenames = []
@@ -123,25 +123,75 @@ class MainViewController : NSViewController, NSTableViewDataSource, NSUserInterf
 	
 	func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
 		guard tableView == tableViewFiles else {return nil}
+		return DraggedFile(sourceRow: row)
+	}
+	
+	private final class DraggedFile : NSObject, NSPasteboardWriting, NSPasteboardReading {
 		
-		return (arrayControllerFiles.arrangedObjects as! [URL])[row] as NSURL
+		static var draggedType = NSPasteboard.PasteboardType("com.happn.renamer.main-view-controller.files")
+		
+		static func readableTypes(for pasteboard: NSPasteboard) -> [NSPasteboard.PasteboardType] {
+			[draggedType]
+		}
+		
+		var sourceRow: Int
+		
+		init(sourceRow: Int) {
+			self.sourceRow = sourceRow
+		}
+		
+		init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType) {
+			guard type == Self.draggedType, let r = propertyList as? Int else {
+				return nil
+			}
+			self.sourceRow = r
+		}
+		
+		func writableTypes(for pasteboard: NSPasteboard) -> [NSPasteboard.PasteboardType] {
+			return [Self.draggedType]
+		}
+		
+		func pasteboardPropertyList(forType type: NSPasteboard.PasteboardType) -> Any? {
+			assert(type == Self.draggedType)
+			return sourceRow
+		}
+		
+		static func readingOptions(forType type: NSPasteboard.PasteboardType, pasteboard: NSPasteboard) -> NSPasteboard.ReadingOptions {
+			assert(type == Self.draggedType)
+			return [.asPropertyList]
+		}
+		
 	}
 	
 	func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
 		guard tableView == tableViewFiles else {return .init()}
 		
-		let allow = info.draggingPasteboard.canReadObject(forClasses: [NSURL.self], options: readOptions)
-		return allow ? .generic : .init()
+		let canRead = (
+			info.draggingPasteboard.canReadObject(forClasses: [NSURL.self], options: readOptions) ||
+			info.draggingPasteboard.canReadObject(forClasses: [DraggedFile.self], options: nil)
+		)
+		return (canRead && dropOperation == .above) ? .generic : .init()
 	}
 	
 	func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
 		guard tableView == tableViewFiles else {return false}
 		
-		guard let urls = info.draggingPasteboard.readObjects(forClasses: [NSURL.self], options: readOptions) as? [URL] else {
-			return false
+		if let draggedFiles = info.draggingPasteboard.readObjects(forClasses: [DraggedFile.self], options: nil) as? [DraggedFile], !draggedFiles.isEmpty {
+			let draggedRows = Set(draggedFiles.map{ $0.sourceRow }).sorted()
+			
+			let delta = draggedRows.firstIndex{ $0 >= row } ?? draggedRows.count
+			let added = draggedRows.map{ (arrayControllerFiles.arrangedObjects as! [URL])[$0] }
+			
+			arrayControllerFiles.remove(atArrangedObjectIndexes: IndexSet(draggedRows))
+			arrayControllerFiles.insert(contentsOf: added, atArrangedObjectIndexes: IndexSet(draggedRows.enumerated().map{ row - delta + $0.offset }))
+			
+			return true
 		}
-		urls.reversed().forEach{ arrayControllerFiles.insert($0, atArrangedObjectIndex: row) }
-		return true
+		if let urls = info.draggingPasteboard.readObjects(forClasses: [NSURL.self], options: readOptions) as? [URL], !urls.isEmpty {
+			urls.reversed().forEach{ arrayControllerFiles.insert($0, atArrangedObjectIndex: row) }
+			return true
+		}
+		return false
 	}
 	
 	private let readOptions = [NSPasteboard.ReadingOptionKey.urlReadingFileURLsOnly: false]
